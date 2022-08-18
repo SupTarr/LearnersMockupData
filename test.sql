@@ -53,3 +53,67 @@ JOIN progress
   ON users.user_id = progress.user_id
 GROUP BY 1
 ORDER BY 2 DESC;
+
+-- What courses are the New Yorkers students taking?
+SELECT 
+  COUNT(
+    CASE
+      WHEN progress.learn_cpp = 'started' OR progress.learn_cpp = 'completed' 
+      THEN users.user_id
+    END) AS 'CPP',
+  COUNT(
+    CASE
+      WHEN progress.learn_sql = 'completed' OR progress.learn_sql = 'started' 
+      THEN users.user_id
+    END) AS 'SQL',
+  COUNT(
+    CASE
+      WHEN progress.learn_html = 'completed' OR progress.learn_html = 'started' 
+      THEN users.user_id
+    END) AS 'HTML',
+  COUNT(
+    CASE
+      WHEN progress.learn_javascript = 'started' OR progress.learn_javascript = 'completed' 
+      THEN users.user_id
+    END) AS 'JavaScript',
+  COUNT(
+    CASE
+      WHEN progress.learn_java = 'started' OR progress.learn_java = 'completed' 
+      THEN users.user_id
+    END) AS 'Java'
+FROM users
+JOIN progress
+  ON users.user_id = progress.user_id
+WHERE users.city = 'New York';
+
+-- What courses are the Chicago students taking?
+SELECT 
+  COUNT(
+    CASE
+      WHEN progress.learn_cpp = 'started' OR progress.learn_cpp = 'completed' 
+      THEN users.user_id
+    END) AS 'CPP',
+  COUNT(
+    CASE
+      WHEN progress.learn_sql = 'completed' OR progress.learn_sql = 'started' 
+      THEN users.user_id
+    END) AS 'SQL',
+  COUNT(
+    CASE
+      WHEN progress.learn_html = 'completed' OR progress.learn_html = 'started' 
+      THEN users.user_id
+    END) AS 'HTML',
+  COUNT(
+    CASE
+      WHEN progress.learn_javascript = 'started' OR progress.learn_javascript = 'completed' 
+      THEN users.user_id
+    END) AS 'JavaScript',
+  COUNT(
+    CASE
+      WHEN progress.learn_java = 'started' OR progress.learn_java = 'completed' 
+      THEN users.user_id
+    END) AS 'Java'
+FROM users
+JOIN progress
+  ON users.user_id = progress.user_id
+WHERE users.city = 'Chicago';
